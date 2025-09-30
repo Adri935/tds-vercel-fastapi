@@ -18,6 +18,10 @@ app.add_middleware(
 with open(os.path.join(os.path.dirname(__file__), "..", "q-vercel-latency.json")) as f:
     telemetry_data = json.load(f)
 
+@app.get("/")
+def health():
+    return {"status": "ok"}
+
 @app.post("/")
 async def metrics(request: Request):
     body = await request.json()
