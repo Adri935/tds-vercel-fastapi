@@ -17,8 +17,11 @@ app.add_middleware(
 
 # Load telemetry bundle once (JSON file placed in project root)
 with open(os.path.join(os.path.dirname(__file__), "q-vercel-latency.json")) as f:
+    print(">>> Loading telemetry bundle...")
+    print(">>> Bundle path:", os.path.join(os.path.dirname(__file__), "q-vercel-latency.json"))
+    print(">>> Exists?", os.path.exists(os.path.join(os.path.dirname(__file__), "q-vercel-latency.json")))
     telemetry_data = json.load(f)
-
+    
 @app.get("/")
 def health():
     return {"status": "ok"}
